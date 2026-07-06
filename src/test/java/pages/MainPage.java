@@ -24,13 +24,13 @@ public class MainPage extends BasePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButtonOnMainLocator));
     }
 
-    @Step("Кликаем «Войти в аккаунт» на главной")
+    @Step("Кликаем «Войти в аккаунт» на главной странице")
     public void clickLoginButtonOnMain() {
         WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(loginButtonOnMainLocator));
         btn.click();
     }
 
-    @Step("Кликаем «Личный кабинет» в шапке")
+    @Step("Кликаем «Личный кабинет» в шапке сайта")
     public void clickPersonalCabinet() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 

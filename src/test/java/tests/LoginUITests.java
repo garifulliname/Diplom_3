@@ -10,12 +10,12 @@ import pages.RegistrationPage;
 
 import static org.junit.Assert.assertTrue;
 
-@DisplayName("Тесты авторизации (входа)")
+@DisplayName("Тесты авторизации")
 public class LoginUITests extends BaseUITest {
 
     @Test
     @DisplayName("Вход через кнопку «Войти в аккаунт» на главной странице")
-    @Description("На главной нажимает кнопку, вводит данные, проверяет вход.")
+    @Description("На главной странице нажимает кнопку, вводит данные, проверяет вход.")
     public void testLoginViaMainPageButton() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();

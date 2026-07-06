@@ -13,7 +13,7 @@ public class ConstructorUITests extends BaseUITest {
 
     @Test
     @DisplayName("Переключение на вкладку «Булки»")
-    @Description("Открывает главную, закрывает модалку, переключается на вкладку «Булки», проверяет, что вкладка активна.")
+    @Description("Открывает главную, закрывает модальное окно, переключается на вкладку «Булки», проверяет, что вкладка активна.")
     public void testSwitchToBunsTab() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();

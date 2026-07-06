@@ -1,6 +1,8 @@
 package tests;
 
 import api.ApiClient;
+import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -25,12 +27,16 @@ public abstract class BaseUITest {
         testEmail = TestDataGenerator.generateUniqueEmail();
         testPassword = TestDataGenerator.generateValidPassword();
 
-        var response = ApiClient.registerUser(testEmail, testPassword, testName);
-        if (response.statusCode() != 200 && response.statusCode() != 201) {
-            throw new RuntimeException("Не удалось создать тестового пользователя. Статус: " + response.statusCode());
+        Response response = ApiClient.registerUser(testEmail, testPassword, testName);
+        int status = response.statusCode();
+
+        if (!(status == HttpStatus.SC_OK || status == HttpStatus.SC_CREATED)) {
+            throw new RuntimeException(
+                    "Не удалось создать тестового пользователя: ожидались статусы 200 (OK) или 201 (Created), получен " + status
+            );
         }
 
-        var loginResponse = ApiClient.loginUser(testEmail, testPassword);
+        Response loginResponse = ApiClient.loginUser(testEmail, testPassword);
         accessToken = loginResponse.jsonPath().getString("accessToken").replace("Bearer ", "");
         refreshToken = loginResponse.jsonPath().getString("refreshToken");
     }
