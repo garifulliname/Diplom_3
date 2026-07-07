@@ -47,8 +47,8 @@ public class MainPage extends BasePage {
     public void verifyPublicPage() {
         wait.until(driver -> {
             try {
-                WebElement h1 = driver.findElement(By.xpath("//h1[normalize-space()='Соберите бургер']"));
-                return h1.isDisplayed();
+                WebElement constructorHeader  = driver.findElement(By.xpath("//h1[normalize-space()='Соберите бургер']"));
+                return constructorHeader.isDisplayed();
             } catch (NoSuchElementException e) {
                 return false;
             }
